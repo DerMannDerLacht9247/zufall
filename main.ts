@@ -21,14 +21,6 @@ input.onButtonEvent(Button.A, input.buttonEventClick(), function () {
     basic.pause(5000)
     onoff = 0
     basic.showLeds(`
-        . # . # .
-        . # . # .
-        . . . . .
-        # . . . #
-        . # # # .
-        `)
-    basic.pause(100)
-    basic.showLeds(`
         . . . . .
         . . . . .
         . . . . .
@@ -62,9 +54,7 @@ input.onButtonEvent(Button.A, input.buttonEventClick(), function () {
         z3 = disunten
         led.plot(3, 2)
     }
-    z4 = z1 - (z2 + z3)
-    z5 = z1 + (z2 - z3)
-    if (z4 < z5) {
+    if (z1 - z2 < z3 - z2 || (z1 - z3 < z2 - z3 || z2 - z1 < z3 - z1)) {
         pins.digitalWritePin(DigitalPin.P3, 1)
         led.plot(1, 3)
     } else {
@@ -72,8 +62,6 @@ input.onButtonEvent(Button.A, input.buttonEventClick(), function () {
         led.plot(3, 3)
     }
 })
-let z5 = 0
-let z4 = 0
 let z3 = 0
 let z2 = 0
 let onoff = 0
