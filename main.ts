@@ -1,4 +1,8 @@
 input.onButtonEvent(Button.A, input.buttonEventClick(), function () {
+    pins.digitalWritePin(DigitalPin.P0, 0)
+    pins.digitalWritePin(DigitalPin.P1, 0)
+    pins.digitalWritePin(DigitalPin.P2, 0)
+    pins.digitalWritePin(DigitalPin.P3, 0)
     disoben = 0
     disunten = 0
     links = 0
@@ -23,33 +27,49 @@ input.onButtonEvent(Button.A, input.buttonEventClick(), function () {
         # . . . #
         . # # # .
         `)
+    basic.pause(100)
+    basic.showLeds(`
+        . . . . .
+        . . . . .
+        . . . . .
+        . . . . .
+        . . . . .
+        `)
     if (links < rechts) {
         pins.digitalWritePin(DigitalPin.P0, 1)
         z1 = links
+        led.plot(1, 0)
     } else {
         pins.digitalWritePin(DigitalPin.P0, 0)
         z1 = rechts
+        led.plot(3, 0)
     }
     if (logoben < logunten) {
         pins.digitalWritePin(DigitalPin.P1, 1)
         z2 = logoben
+        led.plot(1, 1)
     } else {
         pins.digitalWritePin(DigitalPin.P1, 0)
         z2 = logunten
+        led.plot(3, 1)
     }
     if (disoben < disunten) {
         pins.digitalWritePin(DigitalPin.P2, 1)
         z3 = disoben
+        led.plot(1, 2)
     } else {
         pins.digitalWritePin(DigitalPin.P2, 0)
         z3 = disunten
+        led.plot(3, 2)
     }
     z4 = z1 - (z2 + z3)
     z5 = z1 + (z2 - z3)
     if (z4 < z5) {
         pins.digitalWritePin(DigitalPin.P3, 1)
+        led.plot(1, 3)
     } else {
         pins.digitalWritePin(DigitalPin.P3, 0)
+        led.plot(3, 3)
     }
 })
 let z5 = 0
